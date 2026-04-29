@@ -5335,4 +5335,50 @@ Gallery  Area
   margin-top: 10px;
 }
 
+/* MAIN IMAGE WRAPPER + ARROW BUTTONS */
+.main-img-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.slide-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.slide-btn-prev {
+  left: 10px;
+}
+.slide-btn-next {
+  right: 10px;
+}
+
+/* ACTIVE THUMB HIGHLIGHT */
+.machine-gallery .thumbs img.active-thumb {
+  border-color: #c8a96e; /* change to your brand color */
+  opacity: 1;
+}
+
 /*# sourceMappingURL=style.css.map */

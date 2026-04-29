@@ -35,30 +35,57 @@
     <!-- Title -->
     <title>Machines - Nature Trade Network</title>
     <script>
-      function changeImage(el) {
-        let gallery = el.closest(".machine-gallery");
+      function initGallery(gallery) {
+        const images = Array.from(gallery.querySelectorAll(".thumbs img")).map(
+          (img) => img.src,
+        );
+        gallery._images = images;
+        gallery._current = 0;
+        updateMainImage(gallery);
+      }
 
-        let mainImg = gallery.querySelector(".main-img");
-        let videoBox = gallery.querySelector(".video-container");
+      function updateMainImage(gallery) {
+        const mainImg = gallery.querySelector(".main-img");
+        const videoBox = gallery.querySelector(".video-container");
+        const thumbs = gallery.querySelectorAll(".thumbs img");
 
         mainImg.style.display = "block";
         videoBox.style.display = "none";
+        mainImg.src = gallery._images[gallery._current];
 
-        mainImg.src = el.src;
+        thumbs.forEach((thumb, i) => {
+          thumb.classList.toggle("active-thumb", i === gallery._current);
+        });
+      }
+
+      function changeImage(el) {
+        const gallery = el.closest(".machine-gallery");
+        const thumbs = Array.from(gallery.querySelectorAll(".thumbs img"));
+        gallery._current = thumbs.indexOf(el);
+        updateMainImage(gallery);
+      }
+
+      function slideImage(btn, direction) {
+        const gallery = btn.closest(".machine-gallery");
+        const total = gallery._images.length;
+        gallery._current = (gallery._current + direction + total) % total;
+        updateMainImage(gallery);
       }
 
       function playVideo(el, url) {
-        let gallery = el.closest(".machine-gallery");
-
-        let mainImg = gallery.querySelector(".main-img");
-        let videoBox = gallery.querySelector(".video-container");
-        let iframe = videoBox.querySelector("iframe");
+        const gallery = el.closest(".machine-gallery");
+        const mainImg = gallery.querySelector(".main-img");
+        const videoBox = gallery.querySelector(".video-container");
+        const iframe = videoBox.querySelector("iframe");
 
         mainImg.style.display = "none";
         videoBox.style.display = "block";
-
         iframe.src = url;
       }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".machine-gallery").forEach(initGallery);
+      });
     </script>
   </head>
   <body>
@@ -293,32 +320,49 @@
         <div class="row align-items-start machine-box" id="machine1">
           <div class="col-lg-5">
             <div class="machine-gallery">
-              <img
-                src="assets/img/machines/bending-machines/01-manual-bending-machine-nature-main-01.webp"
-                class="main-img"
-                id="mainImage"
-              />
-              <div
-                id="videoContainer"
-                class="video-container"
-                style="display: none"
-              >
-                <iframe
-                  width="100%"
-                  height="350"
-                  src=""
-                  frameborder="0"
-                  allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                  "
-                  allowfullscreen
+              <div class="main-img-wrapper">
+                <button
+                  class="slide-btn slide-btn-prev"
+                  onclick="slideImage(this, -1)"
                 >
-                </iframe>
+                  <i class="las la-angle-left"></i>
+                </button>
+
+                <img
+                  src="assets/img/machines/bending-machines/01-manual-bending-machine-nature-main-01.webp"
+                  class="main-img"
+                  id="mainImage"
+                />
+
+                <div
+                  id="videoContainer"
+                  class="video-container"
+                  style="display: none"
+                >
+                  <iframe
+                    width="100%"
+                    height="350"
+                    src=""
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
+
+                <button
+                  class="slide-btn slide-btn-next"
+                  onclick="slideImage(this, 1)"
+                >
+                  <i class="las la-angle-right"></i>
+                </button>
               </div>
 
               <div class="thumbs">
@@ -338,16 +382,6 @@
                   src="assets/img/machines/bending-machines/01-manual-bending-machine-nature-main-01.webp"
                   onclick="changeImage(this)"
                 />
-                <!-- VIDEO -->
-                <!-- <div
-                  class="video-thumb"
-                  onclick="
-                    playVideo(this, 'https://www.youtube.com/embed/DXVHmGoCTco')
-                  "
-                >
-                  <img src="assets/img/machines/video-thumb.webp" />
-                  <span class="play-icon"><i class="las la-play"></i></span>
-                </div> -->
               </div>
             </div>
           </div>
@@ -394,32 +428,49 @@
         >
           <div class="col-lg-5">
             <div class="machine-gallery">
-              <img
-                src="assets/img/machines/bending-machines/02-cnc-bending-machine-nature-main-01.webp"
-                class="main-img"
-                id="mainImage"
-              />
-              <div
-                id="videoContainer"
-                class="video-container"
-                style="display: none"
-              >
-                <iframe
-                  width="100%"
-                  height="350"
-                  src=""
-                  frameborder="0"
-                  allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                  "
-                  allowfullscreen
+              <div class="main-img-wrapper">
+                <button
+                  class="slide-btn slide-btn-prev"
+                  onclick="slideImage(this, -1)"
                 >
-                </iframe>
+                  <i class="las la-angle-left"></i>
+                </button>
+
+                <img
+                  src="assets/img/machines/bending-machines/02-cnc-bending-machine-nature-main-01.webp"
+                  class="main-img"
+                  id="mainImage"
+                />
+
+                <div
+                  id="videoContainer"
+                  class="video-container"
+                  style="display: none"
+                >
+                  <iframe
+                    width="100%"
+                    height="350"
+                    src=""
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
+
+                <button
+                  class="slide-btn slide-btn-next"
+                  onclick="slideImage(this, 1)"
+                >
+                  <i class="las la-angle-right"></i>
+                </button>
               </div>
 
               <div class="thumbs">
@@ -433,14 +484,6 @@
                 />
                 <img
                   src="assets/img/machines/bending-machines/02-cnc-bending-machine-nature-04.webp"
-                  onclick="changeImage(this)"
-                />
-                <img
-                  src="assets/img/machines/bending-machines/02-cnc-bending-machine-nature-05.webp"
-                  onclick="changeImage(this)"
-                />
-                <img
-                  src="assets/img/machines/bending-machines/02-cnc-bending-machine-nature-06.webp"
                   onclick="changeImage(this)"
                 />
                 <img
@@ -499,32 +542,49 @@
         <div class="row align-items-start machine-box" id="machine3">
           <div class="col-lg-5">
             <div class="machine-gallery">
-              <img
-                src="assets/img/machines/bending-machines/03-cnc-mirror-frame-bending-machine-nature-main-01.webp"
-                class="main-img"
-                id="mainImage"
-              />
-              <div
-                id="videoContainer"
-                class="video-container"
-                style="display: none"
-              >
-                <iframe
-                  width="100%"
-                  height="350"
-                  src=""
-                  frameborder="0"
-                  allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                  "
-                  allowfullscreen
+              <div class="main-img-wrapper">
+                <button
+                  class="slide-btn slide-btn-prev"
+                  onclick="slideImage(this, -1)"
                 >
-                </iframe>
+                  <i class="las la-angle-left"></i>
+                </button>
+
+                <img
+                  src="assets/img/machines/bending-machines/03-cnc-mirror-frame-bending-machine-nature-main-01.webp"
+                  class="main-img"
+                  id="mainImage"
+                />
+
+                <div
+                  id="videoContainer"
+                  class="video-container"
+                  style="display: none"
+                >
+                  <iframe
+                    width="100%"
+                    height="350"
+                    src=""
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
+
+                <button
+                  class="slide-btn slide-btn-next"
+                  onclick="slideImage(this, 1)"
+                >
+                  <i class="las la-angle-right"></i>
+                </button>
               </div>
 
               <div class="thumbs">
@@ -540,17 +600,6 @@
                   src="assets/img/machines/bending-machines/03-cnc-mirror-frame-bending-machine-nature-main-01.webp"
                   onclick="changeImage(this)"
                 />
-
-                <!-- VIDEO -->
-                <!-- <div
-                  class="video-thumb"
-                  onclick="
-                    playVideo(this, 'https://www.youtube.com/embed/DXVHmGoCTco')
-                  "
-                >
-                  <img src="assets/img/machines/video-thumb.webp" />
-                  <span class="play-icon"><i class="las la-play"></i></span>
-                </div> -->
               </div>
             </div>
           </div>
@@ -603,32 +652,49 @@
         >
           <div class="col-lg-5">
             <div class="machine-gallery">
-              <img
-                src="assets/img/machines/bending-machines/04-heavy-duty-aluminium-profile-bending-machine-nature-main-01.webp"
-                class="main-img"
-                id="mainImage"
-              />
-              <div
-                id="videoContainer"
-                class="video-container"
-                style="display: none"
-              >
-                <iframe
-                  width="100%"
-                  height="350"
-                  src=""
-                  frameborder="0"
-                  allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                  "
-                  allowfullscreen
+              <div class="main-img-wrapper">
+                <button
+                  class="slide-btn slide-btn-prev"
+                  onclick="slideImage(this, -1)"
                 >
-                </iframe>
+                  <i class="las la-angle-left"></i>
+                </button>
+
+                <img
+                  src="assets/img/machines/bending-machines/04-heavy-duty-aluminium-profile-bending-machine-nature-main-01.webp"
+                  class="main-img"
+                  id="mainImage"
+                />
+
+                <div
+                  id="videoContainer"
+                  class="video-container"
+                  style="display: none"
+                >
+                  <iframe
+                    width="100%"
+                    height="350"
+                    src=""
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
+
+                <button
+                  class="slide-btn slide-btn-next"
+                  onclick="slideImage(this, 1)"
+                >
+                  <i class="las la-angle-right"></i>
+                </button>
               </div>
 
               <div class="thumbs">
