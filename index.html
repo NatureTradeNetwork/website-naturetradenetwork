@@ -34,6 +34,61 @@
     />
     <!-- Title -->
     <title>Nature Trade Network</title>
+    <script>
+      function initGallery(gallery) {
+        const images = Array.from(
+          gallery.querySelectorAll(".about-thumbs img"),
+        ).map((img) => img.src);
+        gallery._images = images;
+        gallery._current = 0;
+        updateMainImage(gallery);
+      }
+
+      function updateMainImage(gallery) {
+        const mainImg = gallery.querySelector(".main-img");
+        const videoBox = gallery.querySelector(".video-container");
+        const thumbs = gallery.querySelectorAll(".thumbs img");
+
+        mainImg.style.display = "block";
+        videoBox.style.display = "none";
+        mainImg.src = gallery._images[gallery._current];
+
+        thumbs.forEach((thumb, i) => {
+          thumb.classList.toggle("active-thumb", i === gallery._current);
+        });
+      }
+
+      function changeImage(el) {
+        const gallery = el.closest(".machine-gallery");
+        const thumbs = Array.from(
+          gallery.querySelectorAll(".about-thumbs img"),
+        );
+        gallery._current = thumbs.indexOf(el);
+        updateMainImage(gallery);
+      }
+
+      function slideImage(btn, direction) {
+        const gallery = btn.closest(".machine-gallery");
+        const total = gallery._images.length;
+        gallery._current = (gallery._current + direction + total) % total;
+        updateMainImage(gallery);
+      }
+
+      function playVideo(el, url) {
+        const gallery = el.closest(".machine-gallery");
+        const mainImg = gallery.querySelector(".main-img");
+        const videoBox = gallery.querySelector(".video-container");
+        const iframe = videoBox.querySelector("iframe");
+
+        mainImg.style.display = "none";
+        videoBox.style.display = "block";
+        iframe.src = url;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".machine-gallery").forEach(initGallery);
+      });
+    </script>
   </head>
   <body>
     <!-- Preloder Area -->
@@ -370,81 +425,6 @@
           </div>
         </div>
       </div>
-
-      <div class="hero-slider-item item-bg1 mobile-bg1">
-        <div class="d-table">
-          <div class="d-table-cell">
-            <div class="container">
-              <div class="slider-content">
-                <span>Right Way..</span>
-                <h1>Global Import and Export Excellence</h1>
-                <p>
-                  Seamlessly connecting India's finest goods with the world,
-                  Nature Trade Network specializes in top-tier import and export
-                  services. Our expertise ensures reliable, efficient, and
-                  timely global trade solutions, making us a trusted partner in
-                  international commerce.
-                </p>
-                <div class="slider-btn">
-                  <a href="contact.html" class="default-btn-one me-3"
-                    >Contact Us</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-slider-item item-bg2 mobile-bg2">
-        <div class="d-table">
-          <div class="d-table-cell">
-            <div class="container">
-              <div class="slider-content">
-                <span>Right Way..</span>
-                <h1>Secure and Efficient Warehousing</h1>
-                <p>
-                  Nature Trade Network provides state-of-the-art warehousing
-                  solutions to meet your storage needs. Our secure, spacious,
-                  and strategically located warehouses ensure your goods are
-                  stored safely and managed efficiently, ready for timely
-                  distribution.
-                </p>
-                <div class="slider-btn">
-                  <a href="contact.html" class="default-btn-one me-3"
-                    >Contact Us</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-slider-item item-bg3 mobile-bg3">
-        <div class="d-table">
-          <div class="d-table-cell">
-            <div class="container">
-              <div class="slider-content">
-                <span>Right Way..</span>
-                <h1>Hassle-Free Custom Clearance</h1>
-                <p>
-                  Simplifying custom clearance processes, Nature Trade Network
-                  ensures smooth and swift international trade. Our dedicated
-                  team handles all paperwork and regulatory requirements,
-                  providing you with a seamless experience from shipment to
-                  delivery, free from complications.
-                </p>
-                <div class="slider-btn">
-                  <a href="contact.html" class="default-btn-one me-3"
-                    >Contact Us</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- End Hero Slider Area -->
 
@@ -453,8 +433,118 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-lg-5">
-            <div class="about-image">
-              <img src="assets/img/about.webp" alt="Image" />
+            <div class="machine-gallery">
+              <div class="main-img-wrapper">
+                <button
+                  class="slide-btn slide-btn-prev"
+                  onclick="slideImage(this, -1)"
+                >
+                  <i class="las la-angle-left"></i>
+                </button>
+
+                <img
+                  src="assets/img/about/about-nature-trade-network-01.webp"
+                  class="main-img"
+                  id="mainImage"
+                />
+
+                <div
+                  id="videoContainer"
+                  class="video-container"
+                  style="display: none"
+                >
+                  <iframe
+                    width="100%"
+                    height="350"
+                    src=""
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
+
+                <button
+                  class="slide-btn slide-btn-next"
+                  onclick="slideImage(this, 1)"
+                >
+                  <i class="las la-angle-right"></i>
+                </button>
+              </div>
+
+              <div class="about-thumbs">
+                <img
+                  src="assets/img/about/about-nature-trade-network-02.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-03.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-04.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-05.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-06.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-07.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-08.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-09.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-10.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-11.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-12.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-13.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-14.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-15.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-16.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/about/about-nature-trade-network-01.webp"
+                  onclick="changeImage(this)"
+                />
+              </div>
             </div>
           </div>
 
@@ -540,6 +630,85 @@
       </div>
     </div>
     <!-- End About Area -->
+
+    <!-- Hero Slider 2 Area -->
+    <div class="hero-slider owl-carousel owl-theme">
+      <div class="hero-slider-item item-bg1 hero-mobile-item">
+        <div class="d-table">
+          <div class="d-table-cell">
+            <div class="container">
+              <div class="slider-content mobile">
+                <span>Right Way..</span>
+                <h1>Global Import and Export Excellence</h1>
+                <p>
+                  Seamlessly connecting India's finest goods with the world,
+                  Nature Trade Network specializes in top-tier import and export
+                  services. Our expertise ensures reliable, efficient, and
+                  timely global trade solutions, making us a trusted partner in
+                  international commerce.
+                </p>
+                <div class="slider-btn">
+                  <a href="contact.html" class="default-btn-one me-3"
+                    >Contact Us</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-slider-item item-bg2 hero-mobile-item">
+        <div class="d-table">
+          <div class="d-table-cell">
+            <div class="container">
+              <div class="slider-content mobile">
+                <span>Right Way..</span>
+                <h1>Secure and Efficient Warehousing</h1>
+                <p>
+                  Nature Trade Network provides state-of-the-art warehousing
+                  solutions to meet your storage needs. Our secure, spacious,
+                  and strategically located warehouses ensure your goods are
+                  stored safely and managed efficiently, ready for timely
+                  distribution.
+                </p>
+                <div class="slider-btn">
+                  <a href="contact.html" class="default-btn-one me-3"
+                    >Contact Us</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-slider-item item-bg3 hero-mobile-item">
+        <div class="d-table">
+          <div class="d-table-cell">
+            <div class="container">
+              <div class="slider-content mobile">
+                <span>Right Way..</span>
+                <h1>Hassle-Free Custom Clearance</h1>
+                <p>
+                  Simplifying custom clearance processes, Nature Trade Network
+                  ensures smooth and swift international trade. Our dedicated
+                  team handles all paperwork and regulatory requirements,
+                  providing you with a seamless experience from shipment to
+                  delivery, free from complications.
+                </p>
+                <div class="slider-btn">
+                  <a href="contact.html" class="default-btn-one me-3"
+                    >Contact Us</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Hero Slider 2 Area -->
 
     <!-- Service Area -->
     <div class="service-area pt-100 pb-70">
