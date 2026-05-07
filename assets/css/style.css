@@ -1695,6 +1695,12 @@ Hero Slider Area
 .hero-slider .hero-slider-item.item-bg9 {
   background-image: url("../img/hero-slider/slider-9.webp");
 }
+.hero-slider .hero-slider-item.item-bg10 {
+  background-image: url("../img/hero-slider/slider-10.webp");
+}
+.hero-slider .hero-slider-item.item-bg11 {
+  background-image: url("../img/hero-slider/slider-11.webp");
+}
 
 /* MOBILE IMAGE OVERRIDE */
 @media (max-width: 768px) {
@@ -1724,6 +1730,12 @@ Hero Slider Area
   }
   .hero-slider .hero-slider-item.mobile-bg9 {
     background-image: url("../img/hero-slider/mobile-slider-9.webp");
+  }
+  .hero-slider .hero-slider-item.mobile-bg10 {
+    background-image: url("../img/hero-slider/mobile-slider-10.webp");
+  }
+  .hero-slider .hero-slider-item.mobile-bg11 {
+    background-image: url("../img/hero-slider/mobile-slider-11.webp");
   }
 }
 
