@@ -1701,6 +1701,9 @@ Hero Slider Area
 .hero-slider .hero-slider-item.item-bg11 {
   background-image: url("../img/hero-slider/slider-11.webp");
 }
+.hero-slider .hero-slider-item.item-bg12 {
+  background-image: url("../img/hero-slider/slider-12.webp");
+}
 
 /* MOBILE IMAGE OVERRIDE */
 @media (max-width: 768px) {
@@ -1736,6 +1739,9 @@ Hero Slider Area
   }
   .hero-slider .hero-slider-item.mobile-bg11 {
     background-image: url("../img/hero-slider/mobile-slider-11.webp");
+  }
+  .hero-slider .hero-slider-item.mobile-bg12 {
+    background-image: url("../img/hero-slider/mobile-slider-12.webp");
   }
 }
 
