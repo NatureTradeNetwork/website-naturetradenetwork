@@ -5461,26 +5461,24 @@ Gallery  Area
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.85);
+  background: #c8242f;
+  color: #ffffff;
   border: none;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-  transition:
-    background 0.2s,
-    transform 0.2s;
+  transition: background 0.3s;
 }
 
 .slide-btn:hover {
-  background: #fff;
-  transform: translateY(-50%) scale(1.08);
+  background: #2d2d2d;
+  transform: translateY(-50%);
 }
 
 .slide-btn-prev {
@@ -5492,8 +5490,38 @@ Gallery  Area
 
 /* ACTIVE THUMB HIGHLIGHT */
 .machine-gallery .thumbs img.active-thumb {
-  border-color: #c8a96e; /* change to your brand color */
+  border-color: #c8a96e;
   opacity: 1;
+}
+
+/* ABOUT SLIDER DOTS */
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.25s;
+  display: block;
+}
+
+.gallery-dot.active {
+  background: #c8a96e;
+  transform: scale(1.35);
+}
+
+.gallery-dot:hover:not(.active) {
+  background: #aaa;
 }
 
 /*# sourceMappingURL=style.css.map */

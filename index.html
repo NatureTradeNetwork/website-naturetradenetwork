@@ -41,30 +41,51 @@
         ).map((img) => img.src);
         gallery._images = images;
         gallery._current = 0;
+
+        // Build dot indicators
+        const dotsWrap = document.createElement("div");
+        dotsWrap.className = "gallery-dots";
+        images.forEach((_, i) => {
+          const dot = document.createElement("button");
+          dot.className = "gallery-dot";
+          dot.type = "button";
+          dot.setAttribute("aria-label", "Image " + (i + 1));
+          dot.addEventListener("click", () => {
+            gallery._current = i;
+            updateMainImage(gallery);
+            resetAutoSlide(gallery);
+          });
+          dotsWrap.appendChild(dot);
+        });
+        gallery.querySelector(".main-img-wrapper").insertAdjacentElement("afterend", dotsWrap);
+
         updateMainImage(gallery);
+        startAutoSlide(gallery);
+        addSwipeSupport(gallery);
+
+        gallery.addEventListener("mouseenter", () => clearInterval(gallery._timer));
+        gallery.addEventListener("mouseleave", () => startAutoSlide(gallery));
       }
 
       function updateMainImage(gallery) {
         const mainImg = gallery.querySelector(".main-img");
         const videoBox = gallery.querySelector(".video-container");
-        const thumbs = gallery.querySelectorAll(".thumbs img");
 
         mainImg.style.display = "block";
         videoBox.style.display = "none";
         mainImg.src = gallery._images[gallery._current];
 
-        thumbs.forEach((thumb, i) => {
-          thumb.classList.toggle("active-thumb", i === gallery._current);
+        gallery.querySelectorAll(".gallery-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === gallery._current);
         });
       }
 
       function changeImage(el) {
         const gallery = el.closest(".machine-gallery");
-        const thumbs = Array.from(
-          gallery.querySelectorAll(".about-thumbs img"),
-        );
+        const thumbs = Array.from(gallery.querySelectorAll(".about-thumbs img"));
         gallery._current = thumbs.indexOf(el);
         updateMainImage(gallery);
+        resetAutoSlide(gallery);
       }
 
       function slideImage(btn, direction) {
@@ -72,6 +93,64 @@
         const total = gallery._images.length;
         gallery._current = (gallery._current + direction + total) % total;
         updateMainImage(gallery);
+        resetAutoSlide(gallery);
+      }
+
+      function startAutoSlide(gallery) {
+        clearInterval(gallery._timer);
+        gallery._timer = setInterval(() => {
+          gallery._current = (gallery._current + 1) % gallery._images.length;
+          updateMainImage(gallery);
+        }, 3000);
+      }
+
+      function resetAutoSlide(gallery) {
+        clearInterval(gallery._timer);
+        startAutoSlide(gallery);
+      }
+
+      function addSwipeSupport(gallery) {
+        const wrapper = gallery.querySelector(".main-img-wrapper");
+        let startX = null;
+        let isDragging = false;
+        const THRESHOLD = 50;
+
+        function onStart(x) {
+          startX = x;
+          isDragging = true;
+        }
+
+        function onEnd(x) {
+          if (!isDragging || startX === null) return;
+          isDragging = false;
+          const diff = startX - x;
+          if (Math.abs(diff) >= THRESHOLD) {
+            const dir = diff > 0 ? 1 : -1;
+            gallery._current = (gallery._current + dir + gallery._images.length) % gallery._images.length;
+            updateMainImage(gallery);
+            resetAutoSlide(gallery);
+          }
+          startX = null;
+        }
+
+        // Touch
+        wrapper.addEventListener("touchstart", (e) => onStart(e.touches[0].clientX), { passive: true });
+        wrapper.addEventListener("touchend", (e) => onEnd(e.changedTouches[0].clientX));
+
+        // Mouse drag
+        wrapper.addEventListener("mousedown", (e) => { e.preventDefault(); onStart(e.clientX); });
+        wrapper.addEventListener("mouseup", (e) => onEnd(e.clientX));
+        wrapper.addEventListener("mouseleave", (e) => { if (isDragging) onEnd(e.clientX); });
+
+        // Prevent native image drag
+        wrapper.querySelectorAll("img").forEach((img) =>
+          img.addEventListener("dragstart", (e) => e.preventDefault())
+        );
+
+        wrapper.style.cursor = "grab";
+        wrapper.addEventListener("mousedown", () => (wrapper.style.cursor = "grabbing"));
+        wrapper.addEventListener("mouseup", () => (wrapper.style.cursor = "grab"));
+        wrapper.addEventListener("mouseleave", () => (wrapper.style.cursor = "grab"));
       }
 
       function playVideo(el, url) {
@@ -80,6 +159,7 @@
         const videoBox = gallery.querySelector(".video-container");
         const iframe = videoBox.querySelector("iframe");
 
+        clearInterval(gallery._timer);
         mainImg.style.display = "none";
         videoBox.style.display = "block";
         iframe.src = url;
