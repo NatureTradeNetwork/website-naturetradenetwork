@@ -116,6 +116,12 @@
                       <li class="nav-item">
                         <a href="cnc-copy-routing-machines.html" class="nav-link">CNC Copy Routing Machines</a>
                       </li>
+                      <li class="nav-item">
+                        <a href="hinges-punching-machines.html" class="nav-link">Hinges Punching Machines</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="portable-pipe-bending-machines.html" class="nav-link">Portable Pipe Bending Machines</a>
+                      </li>
                     </ul>
                   </li>
 
@@ -384,89 +390,96 @@
     <!-- End Go Top -->
   `;
 
-  var headerEl = document.getElementById('header-placeholder');
-  var footerEl = document.getElementById('footer-placeholder');
+  var headerEl = document.getElementById("header-placeholder");
+  var footerEl = document.getElementById("footer-placeholder");
 
   if (headerEl) headerEl.outerHTML = HEADER_HTML;
   if (footerEl) footerEl.outerHTML = FOOTER_HTML;
 
   // Set active nav link based on current page filename
-  var page = window.location.pathname.split('/').pop() || 'index.html';
-  if (!page) page = 'index.html';
+  var page = window.location.pathname.split("/").pop() || "index.html";
+  if (!page) page = "index.html";
 
-  document.querySelectorAll('.navbar-nav .nav-link').forEach(function (link) {
-    var href = link.getAttribute('href');
+  document.querySelectorAll(".navbar-nav .nav-link").forEach(function (link) {
+    var href = link.getAttribute("href");
     if (href === page) {
-      link.classList.add('active');
+      link.classList.add("active");
       // If inside a dropdown, also mark the parent toggle as active
-      var dropdownMenu = link.closest('.dropdown-menu');
+      var dropdownMenu = link.closest(".dropdown-menu");
       if (dropdownMenu) {
         var parentItem = dropdownMenu.previousElementSibling;
-        if (parentItem && parentItem.classList.contains('nav-link')) {
-          parentItem.classList.add('active');
+        if (parentItem && parentItem.classList.contains("nav-link")) {
+          parentItem.classList.add("active");
         }
       }
     }
   });
 
   // Thumb slider: wrap each .thumbs strip with prev/next arrow buttons
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.machine-gallery .thumbs').forEach(function (thumbsEl) {
-      var wrapper = document.createElement('div');
-      wrapper.className = 'thumbs-wrapper';
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .querySelectorAll(".machine-gallery .thumbs")
+      .forEach(function (thumbsEl) {
+        var wrapper = document.createElement("div");
+        wrapper.className = "thumbs-wrapper";
 
-      var prevBtn = document.createElement('button');
-      prevBtn.type = 'button';
-      prevBtn.className = 'thumb-nav-btn thumb-nav-prev';
-      prevBtn.innerHTML = '<i class="las la-angle-left"></i>';
-      prevBtn.setAttribute('aria-label', 'Previous thumbnails');
+        var prevBtn = document.createElement("button");
+        prevBtn.type = "button";
+        prevBtn.className = "thumb-nav-btn thumb-nav-prev";
+        prevBtn.innerHTML = '<i class="las la-angle-left"></i>';
+        prevBtn.setAttribute("aria-label", "Previous thumbnails");
 
-      var nextBtn = document.createElement('button');
-      nextBtn.type = 'button';
-      nextBtn.className = 'thumb-nav-btn thumb-nav-next';
-      nextBtn.innerHTML = '<i class="las la-angle-right"></i>';
-      nextBtn.setAttribute('aria-label', 'Next thumbnails');
+        var nextBtn = document.createElement("button");
+        nextBtn.type = "button";
+        nextBtn.className = "thumb-nav-btn thumb-nav-next";
+        nextBtn.innerHTML = '<i class="las la-angle-right"></i>';
+        nextBtn.setAttribute("aria-label", "Next thumbnails");
 
-      thumbsEl.parentNode.insertBefore(wrapper, thumbsEl);
-      wrapper.appendChild(prevBtn);
-      wrapper.appendChild(thumbsEl);
-      wrapper.appendChild(nextBtn);
+        thumbsEl.parentNode.insertBefore(wrapper, thumbsEl);
+        wrapper.appendChild(prevBtn);
+        wrapper.appendChild(thumbsEl);
+        wrapper.appendChild(nextBtn);
 
-      var SCROLL_PX = 160;
+        var SCROLL_PX = 160;
 
-      prevBtn.addEventListener('click', function () {
-        thumbsEl.scrollLeft -= SCROLL_PX;
-      });
+        prevBtn.addEventListener("click", function () {
+          thumbsEl.scrollLeft -= SCROLL_PX;
+        });
 
-      nextBtn.addEventListener('click', function () {
-        thumbsEl.scrollLeft += SCROLL_PX;
-      });
+        nextBtn.addEventListener("click", function () {
+          thumbsEl.scrollLeft += SCROLL_PX;
+        });
 
-      function updateBtns() {
-        var noOverflow = thumbsEl.scrollWidth <= thumbsEl.clientWidth + 4;
-        prevBtn.style.display = noOverflow ? 'none' : '';
-        nextBtn.style.display = noOverflow ? 'none' : '';
-        if (!noOverflow) {
-          prevBtn.disabled = thumbsEl.scrollLeft <= 2;
-          nextBtn.disabled = thumbsEl.scrollLeft + thumbsEl.clientWidth >= thumbsEl.scrollWidth - 2;
+        function updateBtns() {
+          var noOverflow = thumbsEl.scrollWidth <= thumbsEl.clientWidth + 4;
+          prevBtn.style.display = noOverflow ? "none" : "";
+          nextBtn.style.display = noOverflow ? "none" : "";
+          if (!noOverflow) {
+            prevBtn.disabled = thumbsEl.scrollLeft <= 2;
+            nextBtn.disabled =
+              thumbsEl.scrollLeft + thumbsEl.clientWidth >=
+              thumbsEl.scrollWidth - 2;
+          }
         }
-      }
 
-      thumbsEl.addEventListener('scroll', updateBtns);
+        thumbsEl.addEventListener("scroll", updateBtns);
 
-      // Center the clicked thumbnail in the strip
-      thumbsEl.addEventListener('click', function (e) {
-        var img = e.target.closest('img');
-        if (!img) return;
-        var containerRect = thumbsEl.getBoundingClientRect();
-        var imgRect = img.getBoundingClientRect();
-        var delta = (imgRect.left + imgRect.width / 2) - (containerRect.left + containerRect.width / 2);
-        thumbsEl.scrollLeft += delta;
+        // Center the clicked thumbnail in the strip
+        thumbsEl.addEventListener("click", function (e) {
+          var img = e.target.closest("img");
+          if (!img) return;
+          var containerRect = thumbsEl.getBoundingClientRect();
+          var imgRect = img.getBoundingClientRect();
+          var delta =
+            imgRect.left +
+            imgRect.width / 2 -
+            (containerRect.left + containerRect.width / 2);
+          thumbsEl.scrollLeft += delta;
+        });
+
+        updateBtns();
+        // Re-check once images have loaded
+        setTimeout(updateBtns, 200);
       });
-
-      updateBtns();
-      // Re-check once images have loaded
-      setTimeout(updateBtns, 200);
-    });
   });
 })();

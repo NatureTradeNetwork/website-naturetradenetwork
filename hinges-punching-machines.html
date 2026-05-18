@@ -1,0 +1,358 @@
+﻿<!doctype html>
+<html lang="zxx">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <!-- Meanmenu CSS -->
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css" />
+    <!-- Line Awesome CSS -->
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css" />
+    <!-- Magnific CSS -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <!-- Owl Theme CSS -->
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css" />
+    <!-- Odometer CSS -->
+    <link rel="stylesheet" href="assets/css/odometer.css" />
+    <!-- Stylesheet CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Stylesheet Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <!-- Theme Dark CSS -->
+    <link rel="stylesheet" href="assets/css/theme-dark.css" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/favicon.webp" />
+    <!-- Facebook Domain Verification -->
+    <meta
+      name="facebook-domain-verification"
+      content="upi1q6jc6zl40b3w9wjrau9xi47wxe"
+    />
+    <!-- Title -->
+    <title>Machines - Nature Trade Network</title>
+    <script>
+      function initGallery(gallery) {
+        const images = Array.from(gallery.querySelectorAll(".thumbs img")).map(
+          (img) => img.src,
+        );
+        gallery._images = images;
+        gallery._current = 0;
+        updateMainImage(gallery);
+      }
+
+      function updateMainImage(gallery) {
+        const mainImg = gallery.querySelector(".main-img");
+        const videoBox = gallery.querySelector(".video-container");
+        const thumbs = gallery.querySelectorAll(".thumbs img");
+
+        mainImg.style.display = "block";
+        videoBox.style.display = "none";
+        mainImg.src = gallery._images[gallery._current];
+
+        thumbs.forEach((thumb, i) => {
+          thumb.classList.toggle("active-thumb", i === gallery._current);
+        });
+      }
+
+      function changeImage(el) {
+        const gallery = el.closest(".machine-gallery");
+        const thumbs = Array.from(gallery.querySelectorAll(".thumbs img"));
+        gallery._current = thumbs.indexOf(el);
+        updateMainImage(gallery);
+      }
+
+      function slideImage(btn, direction) {
+        const gallery = btn.closest(".machine-gallery");
+        const total = gallery._images.length;
+        gallery._current = (gallery._current + direction + total) % total;
+        updateMainImage(gallery);
+      }
+
+      function playVideo(el, url) {
+        const gallery = el.closest(".machine-gallery");
+        const mainImg = gallery.querySelector(".main-img");
+        const videoBox = gallery.querySelector(".video-container");
+        const iframe = videoBox.querySelector("iframe");
+
+        mainImg.style.display = "none";
+        videoBox.style.display = "block";
+        iframe.src = url;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".machine-gallery").forEach(initGallery);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <!-- Page banner Area -->
+    <div class="page-banner bg-1">
+      <div class="d-table">
+        <div class="d-table-cell">
+          <div class="container">
+            <div class="page-content">
+              <h2>Our Machines</h2>
+              <ul>
+                <li>
+                  <a href="index.html"
+                    >Home <i class="las la-angle-right"></i
+                  ></a>
+                </li>
+                <li>Machines <i class="las la-angle-right"></i></li>
+                <li>Hinges Punching Machines</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page banner Area -->
+
+    <!-- MACHINES SECTION -->
+    <div class="about-area ptb-100">
+      <div class="container">
+        <!-- MACHINE 1 STARTS -->
+        <div class="row align-items-start machine-box" id="machine1">
+          <div class="col-lg-5">
+            <div class="machine-gallery">
+              <div class="main-img-wrapper">
+                <button
+                  class="slide-btn slide-btn-prev"
+                  onclick="slideImage(this, -1)"
+                >
+                  <i class="las la-angle-left"></i>
+                </button>
+
+                <img
+                  src="assets/img/machines/hinges-machines/01-20-45-hinges-punching-machine-nature-main-01.webp"
+                  class="main-img"
+                  id="mainImage"
+                />
+
+                <div
+                  id="videoContainer"
+                  class="video-container"
+                  style="display: none"
+                >
+                  <iframe
+                    width="100%"
+                    height="350"
+                    src=""
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
+
+                <button
+                  class="slide-btn slide-btn-next"
+                  onclick="slideImage(this, 1)"
+                >
+                  <i class="las la-angle-right"></i>
+                </button>
+              </div>
+
+              <div class="thumbs">
+                <img
+                  src="assets/img/machines/hinges-machines/01-20-45-hinges-punching-machine-nature-02.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/machines/hinges-machines/01-20-45-hinges-punching-machine-nature-03.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/machines/hinges-machines/01-20-45-hinges-punching-machine-nature-04.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/machines/hinges-machines/01-20-45-hinges-punching-machine-nature-main-01.webp"
+                  onclick="changeImage(this)"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="machine-content">
+              <h2>20/45 Hinges Punching Machine</h2>
+
+              <p>
+                20/45 Hinges Punching Machine: Used for punching holes in
+                stainless steel, aluminum, and iron profiles. It is commonly
+                used in the manufacturing of doors, windows, and furniture to
+                create precise holes for hinges and other fittings. The machine
+                can be adjusted to accommodate different profile sizes and hole
+                patterns, ensuring versatility and efficiency in production.
+              </p>
+
+              <h4>Specification:</h4>
+              <ul>
+                <li>Voltage: <b>220V</b></li>
+                <li>Power：<b>250W</b></li>
+                <li>Exhaust Pressure：<b>0.8 MPa</b></li>
+                <li>Size：<b>400*610*1150 mm</b></li>
+                <li>Weight：<b>150 KG</b></li>
+              </ul>
+
+              <a
+                href="https://wa.me/+919041182769?text=Hi,%20I'm%20interested%20in%2020/45%20hinges%20punching%20machine."
+                class="default-btn-one mt-3"
+                >Get Quote</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- MACHINE 1 ENDS -->
+
+        <hr class="machine-divider" />
+
+        <!-- MACHINE 2 STARTS -->
+        <div
+          class="row align-items-start machine-box flex-lg-row-reverse"
+          id="machine2"
+        >
+          <div class="col-lg-5">
+            <div class="machine-gallery">
+              <div class="main-img-wrapper">
+                <button
+                  class="slide-btn slide-btn-prev"
+                  onclick="slideImage(this, -1)"
+                >
+                  <i class="las la-angle-left"></i>
+                </button>
+
+                <img
+                  src="assets/img/machines/hinges-machines/02-20-mm-hinges-punching-machine-nature-main-01.webp"
+                  class="main-img"
+                  id="mainImage"
+                />
+
+                <div
+                  id="videoContainer"
+                  class="video-container"
+                  style="display: none"
+                >
+                  <iframe
+                    width="100%"
+                    height="350"
+                    src=""
+                    frameborder="0"
+                    allow="
+                      accelerometer;
+                      autoplay;
+                      clipboard-write;
+                      encrypted-media;
+                      gyroscope;
+                      picture-in-picture;
+                    "
+                    allowfullscreen
+                  >
+                  </iframe>
+                </div>
+
+                <button
+                  class="slide-btn slide-btn-next"
+                  onclick="slideImage(this, 1)"
+                >
+                  <i class="las la-angle-right"></i>
+                </button>
+              </div>
+
+              <div class="thumbs">
+                <img
+                  src="assets/img/machines/hinges-machines/02-20-mm-hinges-punching-machine-nature-02.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/machines/hinges-machines/02-20-mm-hinges-punching-machine-nature-03.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/machines/hinges-machines/02-20-mm-hinges-punching-machine-nature-04.webp"
+                  onclick="changeImage(this)"
+                />
+                <img
+                  src="assets/img/machines/hinges-machines/02-20-mm-hinges-punching-machine-nature-main-01.webp"
+                  onclick="changeImage(this)"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="machine-content">
+              <h2>20MM Slim Profile Hinges Punching Machine</h2>
+
+              <p>
+                20MM Slim Profile Hinges Punching Machine: Designed for punching
+                holes in slim profiles, particularly those with a thickness of
+                20mm. It is ideal for creating holes for hinges in narrow
+                aluminum or steel profiles used in doors and windows. The
+                machine offers precision and efficiency, making it suitable for
+                high-volume production environments where consistent hole
+                placement is crucial.
+              </p>
+
+              <h4>Specification:</h4>
+              <ul>
+                <li>Voltage: <b>220V</b></li>
+                <li>Power：<b>250W</b></li>
+                <li>Exhaust Pressure：<b>0.8 MPa</b></li>
+                <li>Size：<b>400*610*1150 mm</b></li>
+                <li>Weight：<b>90 KG</b></li>
+              </ul>
+
+              <a
+                href="https://wa.me/+919041182769?text=Hi,%20I'm%20interested%20in%2020MM%20Slim%20Profile%20Hinges%20Punching%20Machine."
+                class="default-btn-one mt-3"
+                >Get Quote</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- MACHINE 2 ENDS -->
+        
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Components JS -->
+    <script src="assets/js/components.js"></script>
+    <!-- jQuery first, then Bootstrap JS -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Meanmenu JS -->
+    <script src="assets/js/meanmenu.min.js"></script>
+    <!-- Magnific JS -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!-- Odometer JS -->
+    <script src="assets/js/odometer.min.js"></script>
+    <!-- Appear JS -->
+    <script src="assets/js/jquery.appear.js"></script>
+    <!-- Form Validator JS -->
+    <script src="assets/js/form-validator.min.js"></script>
+    <!-- Contact JS -->
+    <script src="assets/js/contact-form-script.js"></script>
+    <!-- Ajaxchimp JS -->
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/custom.js"></script>
+  </body>
+</html>

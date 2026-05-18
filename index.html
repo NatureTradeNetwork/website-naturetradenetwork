@@ -57,13 +57,17 @@
           });
           dotsWrap.appendChild(dot);
         });
-        gallery.querySelector(".main-img-wrapper").insertAdjacentElement("afterend", dotsWrap);
+        gallery
+          .querySelector(".main-img-wrapper")
+          .insertAdjacentElement("afterend", dotsWrap);
 
         updateMainImage(gallery);
         startAutoSlide(gallery);
         addSwipeSupport(gallery);
 
-        gallery.addEventListener("mouseenter", () => clearInterval(gallery._timer));
+        gallery.addEventListener("mouseenter", () =>
+          clearInterval(gallery._timer),
+        );
         gallery.addEventListener("mouseleave", () => startAutoSlide(gallery));
       }
 
@@ -82,7 +86,9 @@
 
       function changeImage(el) {
         const gallery = el.closest(".machine-gallery");
-        const thumbs = Array.from(gallery.querySelectorAll(".about-thumbs img"));
+        const thumbs = Array.from(
+          gallery.querySelectorAll(".about-thumbs img"),
+        );
         gallery._current = thumbs.indexOf(el);
         updateMainImage(gallery);
         resetAutoSlide(gallery);
@@ -126,7 +132,9 @@
           const diff = startX - x;
           if (Math.abs(diff) >= THRESHOLD) {
             const dir = diff > 0 ? 1 : -1;
-            gallery._current = (gallery._current + dir + gallery._images.length) % gallery._images.length;
+            gallery._current =
+              (gallery._current + dir + gallery._images.length) %
+              gallery._images.length;
             updateMainImage(gallery);
             resetAutoSlide(gallery);
           }
@@ -134,23 +142,45 @@
         }
 
         // Touch
-        wrapper.addEventListener("touchstart", (e) => onStart(e.touches[0].clientX), { passive: true });
-        wrapper.addEventListener("touchend", (e) => onEnd(e.changedTouches[0].clientX));
-
-        // Mouse drag
-        wrapper.addEventListener("mousedown", (e) => { e.preventDefault(); onStart(e.clientX); });
-        wrapper.addEventListener("mouseup", (e) => onEnd(e.clientX));
-        wrapper.addEventListener("mouseleave", (e) => { if (isDragging) onEnd(e.clientX); });
-
-        // Prevent native image drag
-        wrapper.querySelectorAll("img").forEach((img) =>
-          img.addEventListener("dragstart", (e) => e.preventDefault())
+        wrapper.addEventListener(
+          "touchstart",
+          (e) => onStart(e.touches[0].clientX),
+          { passive: true },
+        );
+        wrapper.addEventListener("touchend", (e) =>
+          onEnd(e.changedTouches[0].clientX),
         );
 
+        // Mouse drag
+        wrapper.addEventListener("mousedown", (e) => {
+          e.preventDefault();
+          onStart(e.clientX);
+        });
+        wrapper.addEventListener("mouseup", (e) => onEnd(e.clientX));
+        wrapper.addEventListener("mouseleave", (e) => {
+          if (isDragging) onEnd(e.clientX);
+        });
+
+        // Prevent native image drag
+        wrapper
+          .querySelectorAll("img")
+          .forEach((img) =>
+            img.addEventListener("dragstart", (e) => e.preventDefault()),
+          );
+
         wrapper.style.cursor = "grab";
-        wrapper.addEventListener("mousedown", () => (wrapper.style.cursor = "grabbing"));
-        wrapper.addEventListener("mouseup", () => (wrapper.style.cursor = "grab"));
-        wrapper.addEventListener("mouseleave", () => (wrapper.style.cursor = "grab"));
+        wrapper.addEventListener(
+          "mousedown",
+          () => (wrapper.style.cursor = "grabbing"),
+        );
+        wrapper.addEventListener(
+          "mouseup",
+          () => (wrapper.style.cursor = "grab"),
+        );
+        wrapper.addEventListener(
+          "mouseleave",
+          () => (wrapper.style.cursor = "grab"),
+        );
       }
 
       function playVideo(el, url) {
@@ -436,6 +466,89 @@
                 <div class="slider-btn">
                   <a
                     href="bending-machines.html#machine6"
+                    class="default-btn-one me-3"
+                    >Learn More</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-slider-item item-bg14 mobile-bg14">
+        <div class="d-table">
+          <div class="d-table-cell">
+            <div class="container">
+              <div class="slider-content">
+                <span>Machine..</span>
+                <h1>20/45 Hinges Punching Machine</h1>
+                <p>
+                  20/45 Hinges Punching Machine is a specialized machine
+                  designed for punching hinges into materials. It is commonly
+                  used in industries such as furniture manufacturing, cabinetry,
+                  and metalworking for tasks like creating hinge holes in wood,
+                  metal, or other materials with precision and efficiency.
+                </p>
+                <div class="slider-btn">
+                  <a
+                    href="hinges-punching-machines.html#machine1"
+                    class="default-btn-one me-3"
+                    >Learn More</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-slider-item item-bg15 mobile-bg15">
+        <div class="d-table">
+          <div class="d-table-cell">
+            <div class="container">
+              <div class="slider-content">
+                <span>Machine..</span>
+                <h1>20MM Slim Profile Hinges Punching Machine</h1>
+                <p>
+                  20 mm slim profile hinges punching machine is a specialized
+                  machine designed for punching slim profile hinges into
+                  materials. It is commonly used in industries such as furniture
+                  manufacturing, cabinetry, and metalworking for tasks like
+                  creating hinge holes in wood, metal, or other materials with
+                  precision and efficiency.
+                </p>
+                <div class="slider-btn">
+                  <a
+                    href="hinges-punching-machines.html#machine2"
+                    class="default-btn-one me-3"
+                    >Learn More</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-slider-item item-bg16 mobile-bg16">
+        <div class="d-table">
+          <div class="d-table-cell">
+            <div class="container">
+              <div class="slider-content">
+                <span>Machine..</span>
+                <h1>Portable Pipe Bending Machine</h1>
+                <p>
+                  Portable Pipe Bending Machine is a compact and lightweight
+                  machine designed for bending pipes on-site. It is commonly
+                  used in industries such as construction, plumbing, and
+                  maintenance for tasks like bending pipes in tight spaces or
+                  remote locations where traditional pipe bending machines may
+                  not be practical.
+                </p>
+                <div class="slider-btn">
+                  <a
+                    href="portable-pipe-bending-machines.html#machine1"
                     class="default-btn-one me-3"
                     >Learn More</a
                   >
