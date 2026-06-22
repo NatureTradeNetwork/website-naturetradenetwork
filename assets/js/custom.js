@@ -31,10 +31,14 @@
 		loop: true,
 		margin: 0,
 		nav: true,
-		autoHeight: true,
+		autoHeight: false,
 		autoplay: true,
+		autoplayTimeout: 6000,
+		autoplaySpeed: 1200,
 		autoplayHoverPause: true,
+		smartSpeed: 1000,
 		dots: true,
+		animateOut: 'fadeOut',
 		navText: [
 			"<i class='las la-angle-left'></i>",
 			"<i class='las la-angle-right'></i>"
@@ -59,6 +63,33 @@
 			$(this).html(countNumber);
 		});
 	});
+
+	// Export Products Slider
+	$('.products-slider').owlCarousel({
+		loop: true,
+		margin: 20,
+		nav: true,
+		dots: true,
+		autoplay: true,
+		autoplayTimeout: 3000,
+		autoplayHoverPause: true,
+		smartSpeed: 800,
+		navText: [
+			"<i class='las la-angle-left'></i>",
+			"<i class='las la-angle-right'></i>"
+		],
+		responsive:{
+			0:{
+				items:1
+			},
+			576:{
+				items:2
+			},
+			992:{
+				items:2
+			}
+		}
+	})
 
 	// Partner Slider
 	$('.partner-slider').owlCarousel({

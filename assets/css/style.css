@@ -5546,4 +5546,363 @@ Gallery  Area
   background: #aaa;
 }
 
+/*================================================
+Modern Hero Slider Enhancements
+=================================================*/
+.hero-slider {
+  position: relative;
+}
+
+.hero-slider .hero-slider-item {
+  min-height: clamp(560px, 90vh, 920px);
+  overflow: hidden;
+}
+
+/* Cinematic readable overlay (replaces the flat old gradient).
+   Scoped to tablet/desktop so the mobile-specific overlays stay intact. */
+@media (min-width: 769px) {
+  .hero-slider .hero-slider-item::before {
+    background-image: linear-gradient(
+        to right,
+        rgba(15, 48, 65, 0.92) 0%,
+        rgba(15, 48, 65, 0.7) 42%,
+        rgba(15, 48, 65, 0.2) 100%
+      ),
+      linear-gradient(
+        to top,
+        rgba(15, 48, 65, 0.85) 0%,
+        rgba(15, 48, 65, 0) 55%
+      );
+  }
+}
+
+.hero-slider .hero-slider-item::before {
+  z-index: 1;
+}
+
+/* Keep content above the overlay */
+.hero-slider .hero-slider-item .d-table {
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive vertical rhythm instead of fixed huge padding */
+.hero-slider .hero-slider-item .slider-content {
+  padding-top: clamp(150px, 24vh, 300px);
+  padding-bottom: clamp(110px, 18vh, 200px);
+  max-width: 660px;
+  z-index: 2;
+}
+
+/* Eyebrow / label as a modern pill badge */
+.hero-slider .hero-slider-item .slider-content span {
+  display: inline-block;
+  padding: 8px 20px;
+  margin-bottom: 22px;
+  background: rgba(200, 36, 47, 0.18);
+  border: 1px solid rgba(200, 36, 47, 0.55);
+  border-radius: 50px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.hero-slider .hero-slider-item .slider-content span::before {
+  display: none;
+}
+
+/* Bold responsive headline */
+.hero-slider .hero-slider-item .slider-content h1 {
+  font-size: clamp(30px, 4.2vw, 58px);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  text-shadow: 0 3px 22px rgba(0, 0, 0, 0.35);
+}
+
+.hero-slider .hero-slider-item .slider-content p {
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 560px;
+}
+
+/* Modern pill button with lift + glow */
+.hero-slider .slider-btn .default-btn-one {
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 12px 28px rgba(200, 36, 47, 0.4);
+  transition: all 0.35s ease;
+}
+
+.hero-slider .slider-btn .default-btn-one:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 34px rgba(15, 48, 65, 0.45);
+}
+
+/* Staggered entrance animation for the active slide content */
+.hero-slider .owl-item .slider-content > * {
+  opacity: 0;
+}
+
+.hero-slider .owl-item.active .slider-content span {
+  animation: heroFadeUp 0.8s ease both 0.25s;
+}
+.hero-slider .owl-item.active .slider-content h1 {
+  animation: heroFadeUp 0.8s ease both 0.45s;
+}
+.hero-slider .owl-item.active .slider-content p {
+  animation: heroFadeUp 0.8s ease both 0.65s;
+}
+.hero-slider .owl-item.active .slider-content .slider-btn {
+  animation: heroFadeUp 0.8s ease both 0.85s;
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glassy circular navigation arrows */
+.hero-slider.owl-theme .owl-nav .owl-prev,
+.hero-slider.owl-theme .owl-nav .owl-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  line-height: 54px;
+  font-size: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  transition: all 0.35s ease;
+  z-index: 3;
+}
+
+.hero-slider.owl-theme .owl-nav .owl-prev {
+  left: 25px;
+}
+
+.hero-slider.owl-theme .owl-nav .owl-next {
+  left: auto;
+  right: 25px;
+}
+
+.hero-slider.owl-theme .owl-nav .owl-prev:hover,
+.hero-slider.owl-theme .owl-nav .owl-next:hover {
+  background: #c8242f;
+  border-color: #c8242f;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Modern expanding pill dots */
+.hero-slider.owl-theme .owl-dots {
+  bottom: 35px;
+  z-index: 3;
+}
+
+.hero-slider.owl-theme .owl-dots .owl-dot span {
+  width: 26px;
+  height: 5px;
+  margin: 0 5px;
+  border-radius: 10px;
+  background: #ffffff;
+  opacity: 0.45;
+  transition: all 0.35s ease;
+}
+
+.hero-slider.owl-theme .owl-dots .owl-dot.active span {
+  width: 52px;
+  background: #c8242f;
+  opacity: 1;
+}
+
+.hero-slider.owl-theme .owl-dots .owl-dot:hover span {
+  opacity: 0.8;
+}
+
+/* Tablet / mobile fine-tuning */
+@media (max-width: 991px) {
+  .hero-slider .hero-slider-item {
+    min-height: clamp(480px, 80vh, 700px);
+  }
+  .hero-slider.owl-theme .owl-nav .owl-prev,
+  .hero-slider.owl-theme .owl-nav .owl-next {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+  }
+  .hero-slider.owl-theme .owl-nav .owl-prev {
+    left: 14px;
+  }
+  .hero-slider.owl-theme .owl-nav .owl-next {
+    right: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Machine slides: keep the heading boxed into the left ~30% so it
+     never overlaps the product image. Wrap only at spaces, never split words. */
+  .hero-slider .hero-slider-item .slider-content:not(.mobile) h1 {
+    max-width: 30%;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
+  }
+  .hero-slider.owl-theme .owl-dots {
+    bottom: 22px;
+  }
+  .hero-slider.owl-theme .owl-dots .owl-dot.active span {
+    width: 38px;
+  }
+}
+
+/*================================================
+Export Products Area
+=================================================*/
+.export-products-area {
+  background-color: #f7f9fa;
+  overflow: hidden;
+}
+
+.export-products-text .section-title {
+  max-width: 100%;
+  margin: 0 0 30px;
+  text-align: left;
+}
+
+.export-products-text .section-title h2 {
+  font-size: clamp(26px, 2.6vw, 40px);
+}
+
+.export-products-btn .default-btn-one {
+  border-radius: 50px;
+  padding: 13px 30px;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(200, 36, 47, 0.3);
+  transition: all 0.35s ease;
+}
+
+.export-products-btn .default-btn-one i {
+  margin-right: 6px;
+  font-size: 19px;
+  vertical-align: middle;
+}
+
+.export-products-btn .default-btn-one:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(15, 48, 65, 0.35);
+}
+
+/* 1:1 product cards inside the slider */
+.products-slider .product-slide {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.products-slider .product-slide img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.products-slider .product-slide:hover img {
+  transform: scale(1.08);
+}
+
+/* Slider controls */
+.products-slider.owl-theme {
+  position: relative;
+}
+
+.products-slider.owl-theme .owl-nav {
+  margin: 0;
+}
+
+.products-slider.owl-theme .owl-nav .owl-prev,
+.products-slider.owl-theme .owl-nav .owl-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0f3041;
+  box-shadow: 0 6px 18px rgba(15, 48, 65, 0.2);
+  margin: 0;
+  transition: all 0.35s ease;
+}
+
+.products-slider.owl-theme .owl-nav .owl-prev {
+  left: -8px;
+}
+
+.products-slider.owl-theme .owl-nav .owl-next {
+  right: -8px;
+}
+
+.products-slider.owl-theme .owl-nav .owl-prev:hover,
+.products-slider.owl-theme .owl-nav .owl-next:hover {
+  background: #c8242f;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.products-slider.owl-theme .owl-dots {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.products-slider.owl-theme .owl-dots .owl-dot span {
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background: #c9d4d9;
+  transition: all 0.35s ease;
+}
+
+.products-slider.owl-theme .owl-dots .owl-dot.active span {
+  width: 30px;
+  border-radius: 10px;
+  background: #c8242f;
+}
+
+@media (max-width: 991px) {
+  .export-products-text {
+    margin-bottom: 45px;
+    text-align: center;
+  }
+  .export-products-text .section-title {
+    text-align: center;
+  }
+  .products-slider.owl-theme .owl-nav .owl-prev {
+    left: 5px;
+  }
+  .products-slider.owl-theme .owl-nav .owl-next {
+    right: 5px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
