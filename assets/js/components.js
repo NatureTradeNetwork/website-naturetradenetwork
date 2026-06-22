@@ -103,8 +103,20 @@
                   </li>
 
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      Machines <i class="las la-angle-down"></i>
+                    <a href="contact.html" class="nav-link">Contact Us</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="gallery.html" class="nav-link">Gallery</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="freight-forwarder.html" class="nav-link">Freight Forwarder</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="machines.html" class="nav-link">
+                      Machine <i class="las la-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu">
                       <li class="nav-item">
@@ -126,48 +138,11 @@
                   </li>
 
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      Services <i class="las la-angle-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li class="nav-item">
-                        <a href="service-air-freight.html" class="nav-link">Air Freight Services</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="service-ocean-freight.html" class="nav-link">Ocean Freight Services</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="service-warehousing.html" class="nav-link">Warehousing</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="service-packaging.html" class="nav-link">Packaging</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="service-custom-clearance.html" class="nav-link">Custom Clearance</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="service-iec-registration.html" class="nav-link">IEC Registration</a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="service-insurance.html" class="nav-link">Insurance</a>
-                      </li>
-                    </ul>
+                    <a href="agriculture-commodity.html" class="nav-link">Agriculture Commodity</a>
                   </li>
 
                   <li class="nav-item">
-                    <a href="gallery.html" class="nav-link">Gallery</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="blogs.html" class="nav-link">Blogs</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="faq.html" class="nav-link">FAQ</a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="blogs.html" class="nav-link">Blog</a>
                   </li>
                 </ul>
               </div>
@@ -242,6 +217,24 @@
                   </a>
                 </li>
                 <li>
+                  <a href="freight-forwarder.html">
+                    <i class="las la-star"></i>
+                    Freight Forwarder
+                  </a>
+                </li>
+                <li>
+                  <a href="machines.html">
+                    <i class="las la-star"></i>
+                    Machine
+                  </a>
+                </li>
+                <li>
+                  <a href="agriculture-commodity.html">
+                    <i class="las la-star"></i>
+                    Agriculture Commodity
+                  </a>
+                </li>
+                <li>
                   <a href="gallery.html">
                     <i class="las la-star"></i>
                     Gallery
@@ -250,31 +243,13 @@
                 <li>
                   <a href="blogs.html">
                     <i class="las la-star"></i>
-                    Blogs
+                    Blog
                   </a>
                 </li>
                 <li>
                   <a href="contact.html">
                     <i class="las la-star"></i>
                     Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a href="faq.html">
-                    <i class="las la-star"></i>
-                    FAQs
-                  </a>
-                </li>
-                <li>
-                  <a href="privacy-policy.html">
-                    <i class="las la-star"></i>
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="terms-condition.html">
-                    <i class="las la-star"></i>
-                    Terms &amp; Conditions
                   </a>
                 </li>
               </ul>
@@ -378,7 +353,14 @@
     <!-- Footer bottom Area -->
     <div class="footer-bottom">
       <div class="container">
-        <p>&copy;2026 Nature TradeNetwork | Naturetradenetwork.com</p>
+        <p>
+          &copy;2026 Nature TradeNetwork | Naturetradenetwork.com
+          <span class="footer-bottom-links">
+            <a href="faq.html">FAQs</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms-condition.html">Terms &amp; Conditions</a>
+          </span>
+        </p>
       </div>
     </div>
     <!-- End Footer bottom Area -->
